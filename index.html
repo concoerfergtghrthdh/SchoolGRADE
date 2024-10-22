@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Student Reports</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #aaf1ee; /* Light Blue */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      button {
+        margin: 5px;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #00fff2;
+      }
+      input {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+      }
+      select {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 220px; /* Adjusted width to match inputs */
+        background-color: white;
+        color: #333;
+        font-size: 16px; /* Adjust font size for better readability */
+        cursor: pointer; /* Change cursor to pointer on hover */
+      }
+      select:hover {
+        border-color: #007bff; /* Change border color on hover */
+      }
+    </style>
+    <script>
+      function openReport(id) {
+        const year = document.getElementById("yearSelect").value;
+        const examIdInput = document.getElementById("examId").value.trim();
+        const examId = examIdInput !== "" ? examIdInput : "325"; // Default to 325 if empty
+
+        const baseUrl =
+          "https://srichaitanyaschool.net/school/Hyderabad-Serilingampally/students/exam-report-view-data?admission_no=";
+        const suffix = `&year=${year}&exam_id=${examId}`;
+        const url = `${baseUrl}${id}${suffix}`;
+
+        window.open(url, "_blank");
+      }
+
+      function checkCustomSCS() {
+        const customID = document.getElementById("customSCS").value.trim();
+        if (customID !== "") {
+          openReport(customID);
+        } else {
+          alert("Please enter a valid SCS ID.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Open Student Exam Reports</h1>
+    <p>
+      Select the year, then click a button to open the respective student's
+      report, or enter a custom SCS ID:
+    </p>
+
+    <label for="yearSelect">Select Year:</label><br />
+    <select id="yearSelect">
+      <option value="2024-2025">2024-2025</option>
+      <option value="2023-2024">2023-2024</option>
+      <option value="2022-2023">2022-2023</option>
+      <option value="2021-2022">2021-2022</option>
+      <option value="2020-2021">2020-2021</option>
+    </select>
+
+    <br /><br />
+
+    <button onclick="openReport('SCS955554')">Tauhid</button>
+    <button onclick="openReport('SCS1060340')">Omer</button>
+    <button onclick="openReport('SCS1148114')">Kareem</button>
+    <button onclick="openReport('SCS1199736')">Farooq</button>
+    <button onclick="openReport('SCS496840')">Affaq</button>
+    <button onclick="openReport('SCS735769')">Bhuvarshika</button>
+    <button onclick="openReport('SCS1123312')">Gowri Kamal</button>
+    <br /><br />
+
+    <label for="examId">Enter Exam ID (default: 325):</label>
+    <input type="text" id="examId" placeholder="325" />
+
+    <br /><br />
+
+    <label for="customSCS">Enter Custom SCS ID:</label>
+    <input type="text" id="customSCS" placeholder="SCSXXXXXX" />
+    <button onclick="checkCustomSCS()">Check Custom SCS</button>
+  </body>
+</html>
